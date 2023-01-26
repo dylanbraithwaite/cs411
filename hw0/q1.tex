@@ -1,0 +1,132 @@
+\begin{center}\textbf{Exercise 1}\end{center}
+
+\paragraph{Background:}
+The question begins by defining a relation ``$\sqlt$'' on the set $\bZ \times \bZ$. We should start by making sure we understand the terminology being used here. The symbol $\bZ$ indicates the set of all integers
+\[\bZ = \set{ ..., -2, -1, 0, 1, 2, ...}.\]
+But the definition refers to something more than this: it uses $\bZ \times \bZ$.
+
+Remember that in general $A \times B$ is the set of pairs of elements coming from $A$ and $B$. In other words, an element of $A \times B$ is something of the form $(a, b)$ where $a \in A$ and $b \in B$ ($a$ is an element of $A$ and $b$ is an element of $B$).
+For example, if $A = \set{1, 2}$ and $B = \set{x, y, z}$, then we have that
+\[A \times B = 
+\begin{Bmatrix}
+	(1, x), (1, y), (1, z),\\
+	(2, x), (2, y), (2, z)
+\end{Bmatrix}.
+\]
+Remember that the order of the elements in this set does not matter. Sets are just shapeless ``bags of elements'', and although we have to pick an order if we want to write down the elements, we consider two sets to be exactly the same if they only differ by the ordering of the elements.
+Here the elements are drawn in a grid shape to hopefully make the presentation clearer, but they could equally be written out in one line in whatever order you prefer.
+
+From this we can work out what is $\bZ \times \bZ$. Its elements are all pairs $(u, v)$ where $u$ and $v$ are integers. We can visualise this as an infinite grid of elements:
+\[\bZ \times \bZ =
+\begin{Bmatrix}
+	\ddots & \vdots & \vdots & \vdots & \vdots & \vdots & \iddots \\
+	\dots & (-2, -2), & (-1, -2), & (0, -2), & (1, -2), & (2, -2), & \dots \\
+	\dots & (-2, -1), & (-1, -1), & (0, -1), & (1, -1), & (2, -1), & \dots \\
+	\dots & (-2, 0), & (-1, 0), & (0, 0), & (1, 0), & (2, 0), & \dots \\
+	\dots & (-2, 1), & (-1, 1), & (0, 1), & (1, 1), & (2, 1), & \dots \\
+	\dots & (-2, 2), & (-1, 2), & (0, 2), & (1, 2), & (2, 2), & \dots \\
+	\iddots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+\end{Bmatrix}\]
+So when we say $(a, b)$ is an element of $\bZ \times \bZ$, we mean that $a$ and $b$ are integers. Therefore $\sqlt$ being a relation on $\bZ\times \bZ$ just means that $\sqlt$ is a way to compare pairs of integers with eachother.
+The definition given in the exercise is that
+\[(a, b) \sqlt (c, d) \text{ if } a < c \text{ or } a = c \text{ and } b \leq d.\]
+Put another way, this means
+\begin{itemize}
+\item if $a < c$ then $(a, b) \sqlt (c, d)$,
+\item and, if $a = c$ and $b \leq d$ then $(a, b) \sqlt (c, d)$.
+\end{itemize}
+This is the `lexicographical order' or the `dictionary order'. If we were comparing letters instead of numbers this would be like alphabetical ordering for 2-letter words: If two words start with different letters then we compare them by looking at the first letter only. But if they start with the same first letter we have to move to the second letter to order them.
+
+\paragraph{Part 1:}
+We will start by recalling what `partial order' means for an arbitrary relation $\preceq$ which compares elements of a set $X$. Then it will be easy to specialise this definition to the case where $X = \bZ \times \bZ$ and $(\preceq) = (\sqlt)$.
+
+If $X$ is a set and $\preceq$ is a relation on it, then we say $\preceq$ is a partial order when the following conditions hold:
+\begin{itemize}
+\item The relation is reflexive: every element $x$ in $X$ is related to itself ($x \preceq x$)	
+\item The relation is antisymmetric: the only way for $x \preceq y$ and $y \preceq x$ at the same time is if $x = y$
+\item The relation is transitive: if $x \preceq y$ and if $y \preceq z$ then also we must have that $x \preceq z$.
+\end{itemize}
+We now show that $\sqlt$ is a partial order.
+In the definition for $\sqlt$ we looked at earlier, there were two possible ways in which we could have $(a, b) \sqlt (c, d)$:
+\begin{enumerate}
+	\item[(i)] $a < c$, or
+	\item[(ii)] $a = c$ and $b \leq d$
+\end{enumerate}
+We number these (i) and (ii) so that we can refer to the two cases individually in the proof.
+
+Now, there are three properties we need to check to show that $\sqlt$ is a partial order. Let's prove them one-by-one: 
+\begin{itemize}
+\item 
+	\textbf{Reflexivity:}
+	Consider a pair $(a, b)$ of integers. We have that $a = a$ and $b \leq b$. This is exactly the condition required by case (ii) in the definition of $\sqlt$, for $(a, b) \sqlt (a, b)$. So $\sqlt$ is reflexive.
+	
+\item 
+	\textbf{Antisymmetry:}
+	Assume we have two pairs of integers $(a, b)$ and $(c, d)$ such that $(a, b) \sqlt (c, d)$ and $(c, d)\sqlt (a, b)$. There are two ways for the relation $(a, b) \sqlt (c, d)$ to hold. Since we have assumed two relations of this form, there are four  ways for this to be true overall:
+	\begin{enumerate}
+		\item $(a, b) \sqlt (c, d)$ by case (i) and $(c, d) \sqlt (a, b)$ by case (i)
+		\item $(a, b) \sqlt (c, d)$ by case (i) and $(c, d) \sqlt (a, b)$ by case (ii)
+		\item $(a, b) \sqlt (c, d)$ by case (ii) and $(c, d) \sqlt (a, b)$ by case (i)
+		\item $(a, b) \sqlt (c, d)$ by case (ii) and $(c, d) \sqlt (a, b)$ by case (ii)
+	\end{enumerate}
+However, we can rule out some of these cases because they make no sense!
+We check each case individually:
+	\begin{enumerate}
+		\item This means that $a < c$ and $c < a$, which is impossible
+		\item This means that $a < c$ and that $c = a$, which is impossible
+		\item This means that $a = c$ and that $c < a$, which is impossible
+		\item This means that $a = c$ and $b \leq d$ and that $c = a$ and $d \leq b$. In particular we have that $b \leq d$ and $d \leq b$, so $d = b$.
+	\end{enumerate}
+The only case that is actually possible is the fourth one, and in that case we know $a = c$ and $d = b$, so $(a, c) = (b, d)$. Hence $\sqlt$ is antisymmetric.
+
+\item 
+	\textbf{Transitivity}
+	Similarly to the previous case, if we have two relations $(a, b) \sqlt (c, d)$ and $(c, d) \sqlt (e, f)$, there are four possible cases:
+	\begin{enumerate}
+		\item $a < c$, and $c < e$, hence $a < e$.
+		\item $a < c$, and $c = e$ and $d \leq f$. Therefore $a < e$.
+		\item $a = c$ and $b \leq d$, and $c < e$. Therefore $a < e$.
+		\item $a = c$ and $b \leq d$, and $c = e$ and $d \leq f$. Therefore $a = e$ and $b\leq f$.
+	\end{enumerate}
+	In the first three cases we have that $a < e$, meaning $(a, b) \sqlt (e, f)$ by case (i). In the fourth case we have that $a = e$ and $b \leq f$, so $(a, b) \sqlt (e, f)$. So, in any case we have that $(a, b) \sqlt (e, f)$ and so $\sqlt$ is transitive.
+\end{itemize}
+We have shown that $\sqlt$ is reflexive, antisymmetric, and transitive, hence it is a partial order. \qed
+
+
+\paragraph{Part 2:}
+Given a partial order $\preceq$, we say this is a total order if any pair of elements are related by this in some direction. That is for any $x$ and $y$, we either have $x \preceq y$ or $y \preceq x$.
+
+I claim that $\sqlt$ is a partial order. 
+To prove this we must show that for any pairs of integers $(a, b)$ and $(c, d)$, we either have $(a, b) \sqlt (c, d)$ or $(c, d) \sqlt (a, b)$. 
+Indeed, for any $a$ and $c$ we will have one of three cases:
+\begin{enumerate}
+	\item $a < c$
+	\item $a > c$
+	\item $a = c$
+\end{enumerate}
+Case 1 implies that $(a, b) \sqlt (c, d)$, and case 2 implies that $(c, d) \sqlt (a, b)$.
+The third case however, does not imply a relation in either direction.
+\begin{itemize}
+\item If $a = c$ then $(a, b) \sqlt (c, d)$ is true exactly when $b \leq d$.
+\item Dually, (if $a = c$) we have $(c, d) \sqlt (a, b)$ is true exactly when $d \leq b$.
+\end{itemize}
+But we know that either $b \leq d$ or $d \leq b$ always holds (because $\leq$ is a total order!). Hence, we have that if $a = c$ then $(a, b) \sqlt (c, d)$ or $(c, d) \sqlt (a, b)$, as required.
+
+Therefore, in all three cases $(a, b) \sqlt (c, d)$ or $(c, d) \sqlt (a, b)$, and so $\sqlt$ is a total order. \qed
+
+\paragraph{Part 3:}
+Consider a relation $\preceq$ on a set $X$ and a function $f: X \to X$.
+The function $f$ is called `monotonic' when for any pair of elements $x, y \in X$ if $x \preceq y$ then we have that $f (x) \preceq f(y)$.
+
+Note that the definition of monotonic depends not only on the function but on the relation being considered. To be totally correct we should say `$f$ is monotonic with respect to $\preceq$'.
+
+Now, in our specific case we have a function $f: \bZ \times \bZ \to \bZ \times \bZ$. That is, it is a function which maps pairs of integers to pairs of integers, by taking a pair $(a, b)$ and returning $(a+2, b+3)$.
+Therefore, to show that $f$ is monotonic we must show that for all pairs $(a, b)$ and $(c, d)$ such that $(a, b) \sqlt (c, d)$, we have that $(a+2, b+3) \sqlt (c + 2, b + 3)$.
+
+Now, if $(a, b) \sqlt (c, d)$ we know that either $a < c$ or $a = c$ and $b \leq d$. In both cases we most show that $(a+2, b+3) \sqlt (c+2, d+3)$.
+\begin{itemize}
+\item If $a < c$, then $a + 2 < c + 2$, so we are done.
+\item Otherwise $a = c$ and $b \leq d$. Then we must have $a + 2 = c+2$ and $b + 3 \leq d + 3$ as required.
+\end{itemize}
+Hence in either case $f (a, b) \sqlt f(c, d)$ and therefore $f$ is monotonic. \qed
+
